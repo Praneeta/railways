@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Departs:</strong>
+  <%= @train_schedule.departs %>
+</p>
+
+<p>
+  <strong>Arrives:</strong>
+  <%= @train_schedule.arrives %>
+</p>
+
+<p>
+  <strong>Departs time:</strong>
+  <%= @train_schedule.departs_time %>
+</p>
+
+<p>
+  <strong>Arrives time:</strong>
+  <%= @train_schedule.arrives_time %>
+</p>
+
+<p>
+  <strong>Train:</strong>
+  <%= @train_schedule.train %>
+</p>
+
+<%= link_to 'Edit', edit_train_schedule_path(@train_schedule) %> |
+<%= link_to 'Back', train_schedules_path %>

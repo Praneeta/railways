@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  capacity: 1
+  source: MyText
+  destination: MyText
+  stops: MyText
+
+two:
+  capacity: 1
+  source: MyText
+  destination: MyText
+  stops: MyText

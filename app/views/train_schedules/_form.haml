@@ -1,0 +1,31 @@
+= form_with(model: train_schedule, local: true) do |form|
+  .field
+    = form.label "Train id (Leave blank for new trains)"
+    = form.text_field :train_id, id: :train_schedule_train_id
+
+  .field
+    = form.label :departs
+    = form.text_area :departs, id: :train_schedule_departs
+
+
+  .field
+    = form.label :arrives
+    = form.text_area :arrives, id: :train_schedule_arrives
+
+
+  .field
+    = form.label :departs_time
+    = form.datetime_select :departs_time, id: :train_schedule_departs_time
+
+
+  .field
+    = form.label :arrives_time
+    = form.datetime_select :arrives_time, id: :train_schedule_arrives_time
+
+
+  .field
+    = form.label :days
+    = form.text_field :days, id: :train_schedule_arrives_time
+
+  .actions
+    = form.submit

@@ -1,0 +1,22 @@
+%p.notice
+  = notice
+
+%h1 Train Schedules
+
+%table
+  %thead
+    %tr
+      %th Train
+      %th Departs
+      %th Departs At
+      %th Arrives
+      %th Arrives At
+
+  %tbody
+    - @train_schedules.each do |train_schedule|
+      %tr
+        %td train_schedule.train
+        %td train_schedule.departs
+        %td train_schedule.departs_time
+        %td train_schedule.arrives
+        %td train_schedule.arrives_time
