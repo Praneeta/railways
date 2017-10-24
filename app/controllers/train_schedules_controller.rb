@@ -30,12 +30,11 @@ class TrainSchedulesController < ApplicationController
   # POST /train_schedules.json
   def create
     @train_schedule = TrainSchedule.new(train_schedule_params)
+    @train_schedule.days = params[:train_schedule][:days]
     respond_to do |format|
       if @train_schedule.save
-        format.html { redirect_to @train_schedule, notice: 'Train schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @train_schedule }
+        format.json { render json: {success: true}, status: :created, location: @train_schedule }
       else
-        format.html { render :new }
         format.json { render json: @train_schedule.errors, status: :unprocessable_entity }
       end
     end
@@ -73,6 +72,8 @@ class TrainSchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def train_schedule_params
-      params.require(:train_schedule).permit(:departs, :arrives, :departs_time, :arrives_time, :train_id)
+      params
+      .require(:train_schedule)
+      .permit(:departs, :arrives, :departs_time, :arrives_time, :train_id)
     end
 end

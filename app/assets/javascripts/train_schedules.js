@@ -23,15 +23,28 @@ $(document).ready(function docReadyFunc(){
       arrives_time: $('#arrival-time-hh').val() + ':' + $('#arrival-time-mm').val(),
       days: _.map($('.days:checked'), function(el) { return $(el).val(); }),
     };
+    $('#submit-schedule').hide();
     $.ajax({
       type: "POST",
       url: '/train_schedules.json',
       data: {train_schedule: trainSchedule},
       success: function success(response) {
-
-      },
-      dataType: 'json '
+        clearInputs();
+        alert('saved');
+        $('#submit-schedule').show();
+      }
     });
+  }
+
+  function clearInputs() {
+    $('#train-id').val('');
+    $('#source').val(0);
+    $('#departure-time-hh').val(0);
+    $('#departure-time-mm').val(0);
+    $('#destination').val(0);
+    $('#arrival-time-hh').val(0)
+    $('#arrival-time-mm').val(0);
+    _.each($('.days'), function(el) { return $(el).prop('checked', false); });
   }
 
   function isValid() {
