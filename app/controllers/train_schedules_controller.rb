@@ -1,5 +1,6 @@
 class TrainSchedulesController < ApplicationController
   before_action :set_train_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, except: [:index]
 
   # GET /train_schedules
   # GET /train_schedules.json
@@ -75,5 +76,11 @@ class TrainSchedulesController < ApplicationController
       params
       .require(:train_schedule)
       .permit(:departs, :arrives, :departs_time, :arrives_time, :train_id)
+    end
+
+    def authenticate
+      authenticate_or_request_with_http_basic('Administration') do |username, password|
+        username == 'admin' && password == 'R@ilw@ys'
+      end
     end
 end
