@@ -4,7 +4,11 @@ class TrainSchedulesController < ApplicationController
   # GET /train_schedules
   # GET /train_schedules.json
   def index
-    @train_schedules = TrainSchedule.all
+    train_source = params[:source] || 'San Francisco'
+    @train_schedules_by_day = {}
+    ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].each do |day|
+      @train_schedules_by_day[day.to_sym] = TrainSchedule.where("days like '%#{day}%'").where({departs: train_source})
+    end
   end
 
   # GET /train_schedules/1
@@ -14,7 +18,8 @@ class TrainSchedulesController < ApplicationController
 
   # GET /train_schedules/new
   def new
-    @train_schedule = TrainSchedule.new
+    # using all because for now db size is small, as it grows recommend to make this a batched call.
+      @trains = Train.all
   end
 
   # GET /train_schedules/1/edit
@@ -25,7 +30,6 @@ class TrainSchedulesController < ApplicationController
   # POST /train_schedules.json
   def create
     @train_schedule = TrainSchedule.new(train_schedule_params)
-
     respond_to do |format|
       if @train_schedule.save
         format.html { redirect_to @train_schedule, notice: 'Train schedule was successfully created.' }

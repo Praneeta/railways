@@ -1,6 +1,12 @@
-%h1
- New Train Schedule
+.row
+ .col-md-2
+ .col-md-8
+  %h1
+   New Train Schedule
 
-= render 'form', train_schedule: @train_schedule
+  = render 'plain_form', train_schedule: @train_schedule
 
-= link_to 'Back', train_schedules_path
+  :javascript
+    app.trainList = #{raw(@trains.to_json)};
+
+ .col-md-2

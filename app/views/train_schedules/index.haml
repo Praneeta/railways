@@ -3,20 +3,26 @@
 
 %h1 Train Schedules
 
-%table
-  %thead
-    %tr
-      %th Train
-      %th Departs
-      %th Departs At
-      %th Arrives
-      %th Arrives At
+- @train_schedules_by_day.each do |day_schedules|
+  %h4.mt-4
+    Schedule for #{day_schedules[0]}
+  - if day_schedules[1].empty?
+    No trains scheduled
+  - else
+    %table.table
+      %thead
+        %tr
+          %th Train
+          %th Departs
+          %th Departs At
+          %th Arrives
+          %th Arrives At
 
-  %tbody
-    - @train_schedules.each do |train_schedule|
-      %tr
-        %td train_schedule.train
-        %td train_schedule.departs
-        %td train_schedule.departs_time
-        %td train_schedule.arrives
-        %td train_schedule.arrives_time
+      %tbody
+        - day_schedules[1].each do |train_schedule|
+          %tr
+            %td #{train_schedule.train_id}
+            %td #{train_schedule.departs}
+            %td #{train_schedule.departs_time.strftime("%H:%M")}
+            %td #{train_schedule.arrives}
+            %td #{train_schedule.arrives_time.strftime("%H:%M")}

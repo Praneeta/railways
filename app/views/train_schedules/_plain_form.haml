@@ -1,0 +1,53 @@
+%form
+  .form-row.mt-4
+    .col-md-2.col-sm-6
+      %label{for:"trainId"} Train #
+    .col-md-3.col-sm-6
+      %select.form-control#train-id
+        %option{value: 0} --Select a train--
+        -@trains.each do |train|
+          %option{value: train.id} #{train.id}
+
+  .form-row.train-details.mt-2.invisible
+    .col-md-2.col-sm-6
+      %label{for:"source"} Source
+    .col-md-3.col-sm-6
+      %select.form-control#source
+    .col-md-1
+    .col-md-2.col-sm-6
+      %label{for:"departTime"} Departure
+    .col-md-1.col-sm-3
+      %select.form-control#departure-time-hh
+        -(00..23).each do |hh|
+          %option{value: hh} #{hh}
+    \:
+    .col-md-1.col-sm-3
+      %select.form-control#departure-time-mm
+        -(00..59).each do |mm|
+          %option{value: mm} #{mm}
+
+  .form-row.train-details.mt-2.invisible
+    .col-md-2.col-sm-6
+      %label{for:"destination"} Destination
+    .col-md-3.col-sm-6
+      %select.form-control#destination
+    .col-md-1
+    .col-md-2.col-sm-6
+      %label{for:"arrivaltTime"} Arrival
+    .col-md-1.col-sm-3
+      %select.form-control#arrival-time-hh
+        -(00..23).each do |hh|
+          %option{value: hh} #{hh}
+    \:
+    .col-md-1.col-sm-3
+      %select.form-control#arrival-time-mm
+        -(00..59).each do |mm|
+          %option{value: mm} #{mm}
+  .form-row.train-details.mt-2.invisible
+    .col-md-2.col-sm-6
+      %label{for:"days"} Days
+    .col-md-10
+      - ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].each do |day|
+        %input.days.d-inline{name: "days", type: "checkbox", value: day}
+        %label.d-inline.mr-2 #{day}
+  %button.btn.btn-primary.train-details.invisible#submit-schedule{type:"button"} Submit

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+%html
+  %head
+    %titleRailways
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    %link{rel:"stylesheet", href:"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"}
+
+
+  %body
+    :javascript
+      app = {};
+    = yield
+    %script(src="https://code.jquery.com/jquery-3.2.1.min.js")
+    %script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js")
+    %script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js")
+    %script(src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js")
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
